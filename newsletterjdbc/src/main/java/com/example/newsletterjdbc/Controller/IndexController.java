@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.newsletterjdbc.Connection.IndexDAO;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 public class IndexController {
@@ -19,5 +21,12 @@ public class IndexController {
 
         return mv;
     }
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public ModelAndView enviarEmailBanco(@RequestParam("email") String email) {
+    ModelAndView mv = new ModelAndView("index");
+    new IndexDAO().cadastrar(email);
+     return mv;
+    }
+     }
+     
 
-}
